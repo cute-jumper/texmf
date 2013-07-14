@@ -1,0 +1,60 @@
+\ProvidesPackage{qjpzh}[2013/06/29 0.1 qjp's package for Chinese documents]
+
+% 载入常用的宏包
+\newif\ifqjpzh@algo\qjpzh@algofalse
+\DeclareOption{algo}{\PassOptionsToPackage{algo}{qjputils}\qjpzh@algotrue}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{qjputils}}
+\ExecuteOptions{}
+\ProcessOptions\relax
+\RequirePackage{qjputils}
+
+% 中文支持
+\RequirePackage{fontspec}       % 该宏包已包含xunicode和xltxtra
+\RequirePackage{xeCJK}
+% 设置英文字体，由fontspec宏包提供的命令
+\setmainfont{Times New Roman}
+\setmonofont{Consolas}
+\setsansfont{Arial}
+% 设置中文字体，由xeCJK宏包提供的命令
+\setCJKmainfont[BoldFont={SimHei},ItalicFont={KaiTi}]{SimSun}
+\setCJKsansfont{SimHei}
+\setCJKmonofont{FangSong}
+\setCJKfamilyfont{zhsong}{SimSun}
+\setCJKfamilyfont{zhhei}{SimHei}
+\setCJKfamilyfont{zhkai}{KaiTi}
+\setCJKfamilyfont{zhfs}{FangSong}
+\setCJKfamilyfont{zhli}{LiSu}
+\setCJKfamilyfont{zhyou}{YouYuan}
+\setCJKfamilyfont{msyh}{微软雅黑}
+\newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
+\newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}  % 楷书
+\newcommand*{\fangsong}{\CJKfamily{zhfs}} % 仿宋
+\newcommand*{\lishu}{\CJKfamily{zhli}}    % 隶书
+\newcommand*{\youyuan}{\CJKfamily{zhyou}} % 幼圆
+
+% 重新定义命令
+\renewcommand\contentsname{目\hspace{1em}录}
+\renewcommand\listfigurename{插图索引}
+\renewcommand\listtablename{表格索引}
+\newcommand\listequationname{公式索引}
+\newcommand\equationname{公式}
+\@ifclassloaded{article}{\renewcommand\refname{参考文献}}{
+  \@ifclassloaded{book}{\renewcommand\bibname{参考文献}}{}
+  \@ifclassloaded{report}{\renewcommand\bibname{参考文献}}{}
+}
+\renewcommand\indexname{索引}
+\renewcommand\figurename{图}
+\renewcommand\tablename{表}
+\renewcommand\appendixname{附录}
+\ifqjpzh@algo
+  \floatname{algorithm}{算法}
+  \renewcommand{\algorithmicrequire}{\textbf{输入:}}
+  \renewcommand{\algorithmicensure}{\textbf{输出:}}
+\else\relax%
+\fi
+
+% 自定义命令
+\newcommand{\qjp}{丘骏鹏}
+
+\endinput

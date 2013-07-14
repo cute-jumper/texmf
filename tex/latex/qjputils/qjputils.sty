@@ -1,0 +1,125 @@
+\ProvidesPackage{qjputils}[2013/06/29 0.1 Load utility packages]
+
+\newif\ifqjputils@math\qjputils@mathfalse
+\DeclareOption{math}{\qjputils@mathtrue}
+\newif\ifqjputils@table\qjputils@tablefalse
+\DeclareOption{table}{\qjputils@tabletrue}
+\newif\ifqjputils@code\qjputils@codefalse
+\DeclareOption{code}{\qjputils@codetrue}
+\newif\ifqjputils@algo\qjputils@algofalse
+\DeclareOption{algo}{\qjputils@algotrue}
+\newif\ifqjputils@zhalgo\qjputils@zhalgofalse
+\DeclareOption{zhalgo}{\qjputils@zhalgotrue}
+\ExecuteOptions{}
+\ProcessOptions\relax
+
+% Misc Packages which may need to be loaded first
+% Must be loaded before `minted', or `minted' will clash.
+\RequirePackage{fancybox}
+
+% Math Packages
+\ifqjputils@math%
+  % Alternative to amsmath
+  \RequirePackage{mathtools}%
+  % Bold symbol in math mode 
+  \RequirePackage{bm}%
+  \newcommand{\vc}[1]{\mathbf{\bm{#1}}}%
+\else\relax%
+\fi
+
+% Table Packages
+\ifqjputils@table%
+  % Fixed-length tables
+  \RequirePackage{tabularx}%
+  % Three-line table, providing \toprule, \midrule and \bottomrule
+  \RequirePackage{booktabs}%
+  % Provide extra column specifications for `tabular' and `array'
+  \RequirePackage{array}%
+  % Multiple rows
+  \RequirePackage{multirow}%
+\else\relax%
+\fi
+
+% Colorful tables.
+% This is *SPECIAL*. We always try to load `xcolor' package.
+% Because beamer loads xcolor internally, requiring `xcolor' with
+% `table' option will cause `Option clash' error. As an incomplete
+% workaround, passing `xcolor={table}' as class option when using
+% beamer.
+\@ifclassloaded{beamer}{}{\@ifpackageloaded{xcolor}{}{\RequirePackage[table]{xcolor}}}%
+
+% For code
+\ifqjputils@code%
+\RequirePackage{listings}
+\definecolor{commentcolor}{rgb}{0,0.6,0}
+\definecolor{numbercolor}{rgb}{0.5,0.5,0.5}
+\definecolor{stringcolor}{rgb}{0.88,0,0.52}
+\definecolor{codebg}{rgb}{0.9,0.9,0.9}
+\lstset{
+  backgroundcolor=codebg,   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{commentcolor},    % comment style
+  % deletekeywords={...},            % if you want to delete keywords from the given language
+  % escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=line,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  % language=Octave,                 % the language of the code
+  % morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{numbercolor}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  % showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  % showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  % stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{stringcolor},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  texcl=true,                      % enable \LaTeX{} code inside comments
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+% Package `minted' also loads `xcolor',
+% so it must be loaded after `\RequirePackage[table]{xcolor}'.
+% Also, it must be loaded after `fancybox'.
+\RequirePackage{minted}
+\newenvironment{code}[2][]%
+% I don't know why adding \VerbatimEnvironment here either... I just look into `cat `kpsewhich minted.sty`'.
+{\VerbatimEnvironment\begin{minted}[linenos, fontsize=\small, bgcolor=codebg, mathescape=true, texcl=true, #1]{#2}}
+  {\end{minted}}
+% Inline version
+\newcommand{\coding}[2]{\mint[fontsize=\small, bgcolor=codebg]{#1}|#2|}
+\newcommand{\icoding}[1]{\colorbox{codebg}{\small\ttfamily #1}}
+\else\relax%
+\fi
+
+% Algorithm
+\ifqjputils@algo
+  \RequirePackage{algorithm}
+  \RequirePackage{algorithmicx}
+  \RequirePackage{algpseudocode}
+\else\relax%
+\fi
+
+% Figures
+\RequirePackage{graphicx}
+% For subfigures
+\RequirePackage{subcaption}
+\renewcommand{\thesubfigure}{(\alph{subfigure})}
+
+% Misc packages
+\RequirePackage{hyperref}
+
+\RequirePackage{fancyvrb}
+\RequirePackage{fancyhdr}
+
+\RequirePackage{comment}
+
+% Some new commands
+\providecommand{\alert}[1]{\textbf{#1}}
+
+\endinput
