@@ -1,0 +1,17 @@
+* 自定义的LaTeX宏包
+** 关于
+自定义一些LaTeX宏包，目标是完成用于中文写作的qjpzh和英文写作的qjpen宏包。目前基本
+完成了qjpzh宏包的定义，qjpen宏包尚未开始。
+
+** 宏包说明
+- qjputils：和写作语言无关的那些宏包定义
+- qjpzh:定义和中文相关的部分
+- qjpen:定义和英文相关的部分
+
+整个目录放在家目录下的texmf目录中，通过 =sudo texhash= 加入tex的索引中。
+
+** 工作说明
+自定义宏包的工作才刚开始，因此还有非常多没有考虑的地方，目前处于勉强可用的状态。
+中文部分参考了一些[[https://github.com/xueruini/thuthesis][ThuThesis]] 的实现。
+
+待完善^_^
