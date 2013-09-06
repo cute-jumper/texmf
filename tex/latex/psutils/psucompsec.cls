@@ -3,14 +3,15 @@
 [2013/09/04 0.1 Easy template for CSE 543 Computer Security's Review]
 \def\version{0.1dev}
 
-% Load "article" class
-\LoadClass{article}
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{geometry}}
+% Pass every options to article
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ExecuteOptions{}
 \ProcessOptions\relax
 
+% Load "article" class
+\LoadClass{article}
+
 % Macro packages
-\RequirePackage{geometry}
 \RequirePackage[parfill]{parskip}
 
 % New commands
