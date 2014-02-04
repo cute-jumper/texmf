@@ -1,2 +1,5 @@
+\#*
+~\#*
 auto
 *.log
+/tex/latex/psutils/psudip.cls
