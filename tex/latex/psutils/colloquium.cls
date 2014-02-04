@@ -8,7 +8,7 @@
 \ProcessOptions\relax
 
 %% Load "article" class
-\LoadClass[letterpaper,12pt]{article}
+\LoadClass[a4paper,12pt]{article}
 
 %% Load necessary macro packages here
 % Set up MSWord-like margins
@@ -79,7 +79,7 @@
 %% Change spacing.
 \doublespacing
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{\baselineskip}
+\setlength{\parskip}{1.2\baselineskip}
 \setlist{topsep=0pt,parsep=0pt,partopsep=0pt}
 
 %% New commands provided for users
