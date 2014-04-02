@@ -62,7 +62,7 @@
       \begin{spacing}{2}
       \clq@titlefont
       {\clq@fontsize{22pt}''\clq@title''}\\[5mm]
-      {\clq@fontsize{18pt}By \clq@speaker, \clq@institute}
+      {\clq@fontsize{18pt}By \clq@speaker, \clq@institute}\\[5mm]
       {\clq@fontsize{18pt}\clq@month~\clq@day, \clq@year}
       \end{spacing}
       \vfill\hfill
