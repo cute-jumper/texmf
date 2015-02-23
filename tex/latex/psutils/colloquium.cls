@@ -49,7 +49,7 @@
 \def\clq@day{\twodigit{\day}}
 \def\clq@speaker{}%
 \def\clq@institute{}%
-\def\clq@reportauthor{Junpeng Qiu\\juq116@cse.psu.edu\\338E IST
+\def\clq@reportauthor{Junpeng Qiu\\juq116@cse.psu.edu\\343D IST
   Building\\Advisor:~Dr.~Guohong~Cao}
 
 %% Set up the title

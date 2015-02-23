@@ -23,6 +23,10 @@
   \RequirePackage{mathtools}%
   % Bold symbol in math mode 
   \RequirePackage{bm}%
+  % Theorems, proofs, etc.
+  \RequirePackage{amsthm}%
+  % For not implies etc.
+  \RequirePackage{centernot}
   \newcommand{\vc}[1]{\mathbf{\bm{#1}}}%
 \else\relax%
 \fi
@@ -89,7 +93,7 @@
 \RequirePackage{minted}
 \newenvironment{code}[2][]%
 % I don't know why adding \VerbatimEnvironment here either... I just look into `cat `kpsewhich minted.sty`'.
-{\VerbatimEnvironment\begin{minted}[linenos, fontsize=\small, bgcolor=codebg, mathescape=true, texcl=true, #1]{#2}}
+{\VerbatimEnvironment\begin{minted}[fontsize=\small, bgcolor=codebg, mathescape=true, texcl=true, #1]{#2}}
   {\end{minted}}
 % Inline version
 \newcommand{\coding}[2]{\mint[fontsize=\small, bgcolor=codebg]{#1}|#2|}
